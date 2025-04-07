@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+body {
+    background-color: antiquewhite;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    height: 60px;
+    background-color: black;
+    color: white;
+}
+
+nav ul li {
+    padding: 0 12px;
+}
+
+.brand img {
+    width: 44px;
+    padding: 0 8px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+
+.container {
+    flex: 1;
+    background-color: black;
+    color: white;
+    font-family: 'Varela Round', sans-serif;
+    display: flex;
+    margin: 10px auto;
+    width: 70%;
+    border-radius: 12px;
+    padding: 20px;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.songList {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.songList::-webkit-scrollbar {
+    width: 5px;
+}
+
+.songList::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.songList::-webkit-scrollbar-thumb {
+    background: #1db954;
+    border-radius: 5px;
+}
+
+.songItemContainer {
+    margin-top: 20px;
+}
+
+.songItem {
+    height: 50px;
+    display: flex;
+    background-color: white;
+    color: black;
+    margin: 12px 0;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 34px;
+    padding: 0 10px;
+    transition: all 0.3s ease;
+}
+
+.songItem:hover {
+    transform: scale(1.02);
+    background-color: #f8f8f8;
+}
+
+.songItem img {
+    width: 43px;
+    border-radius: 34px;
+}
+
+.timestamp {
+    margin: 0 23px;
+}
+
+.timestamp i {
+    cursor: pointer;
+}
+
+.bottom {
+    height: 90px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.timeStampContainer {
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+#myProgressBar {
+    width: 80vw;
+    cursor: pointer;
+    height: 5px;
+}
+
+.icons {
+    margin: 5px 0;
+}
+
+.icons i {
+    font-size: 2.5em;
+    margin: 0 10px;
+}
+
+.volumeControl {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.volumeControl i {
+    cursor: pointer;
+    color: white;
+    font-size: 1.2em;
+}
+
+#volumeBar {
+    width: 100px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    background: linear-gradient(to right, #1db954 0%, #1db954 100%, #4d4d4d 100%);
+    border-radius: 8px;
+    height: 5px;
+    outline: none;
+}
+
+#volumeBar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+#volumeBar::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #1db954;
+}
+
+#volumeBar::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: all .2s ease-in-out;
+}
+
+#volumeBar::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    background: #1db954;
+}
+
+#volumeBar::-moz-range-progress {
+    background-color: #1db954;
+    height: 5px;
+    border-radius: 8px;
+}
+
+#volumeBar::-moz-range-track {
+    background-color: #4d4d4d;
+    height: 5px;
+    border-radius: 8px;
+}
+
+.icons i:hover, .volumeControl i:hover {
+    color: #1db954;
+    transition: all 0.3s ease;
+}
+
+.songInfo {
+    position: absolute;
+    left: 10vw;
+    font-family: 'Varela Round', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1em;
+}
+
+.songInfo img {
+    width: 42px;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        margin: 5px auto;
+        padding: 10px;
+    }
+    
+    .bottom {
+        height: 80px;
+        padding: 5px;
+    }
+    
+    .icons i {
+        font-size: 2em;
+        margin: 0 8px;
+    }
+
+    .timeStampContainer {
+        margin-bottom: 8px;
+    }
+
+    .songInfo {
+        font-size: 0.9em;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    body {
+        background-color: red;
+    }
+}
