@@ -11,6 +11,8 @@ let songItems = Array.from(document.getElementsByClassName('songItem'));
 let volumeBar = document.getElementById('volumeBar');
 let currentTimeElement = document.getElementById('currentTime');
 let durationElement = document.getElementById('duration');
+let playButton = document.getElementById('playButton');
+let stopButton = document.getElementById('stopButton');
 
 let songs = [
     {songName: "Warriyo - Mortals [NCS Release]", filePath: "1.mp3", coverPath: "covers/1.jpg"},
@@ -25,11 +27,10 @@ let songs = [
     {songName: "Na Jaana - Salam-e-Ishq", filePath: "10.mp3", coverPath: "covers/10.jpg"},
 ]
 
-songItems.forEach((element, i)=>{ 
-    element.getElementsByTagName("img")[0].src = songs[i].coverPath; 
-    element.getElementsByClassName("songName")[0].innerText = songs[i].songName; 
+songItems.forEach((element, i)=>{
+    element.getElementsByTagName("img")[0].src = songs[i].coverPath;
+    element.getElementsByClassName("songName")[0].innerText = songs[i].songName;
 })
- 
 
 // Add error handling for audio
 audioElement.addEventListener('error', function(e) {
@@ -64,10 +65,39 @@ masterPlay.addEventListener('click', ()=>{
         gif.style.opacity = 0;
     }
 })
+
+// Play button event listener
+playButton.addEventListener('click', ()=>{
+    if(audioElement.paused || audioElement.currentTime<=0){
+        audioElement.play().catch(e => {
+            console.error('Error playing audio:', e);
+        });
+        masterPlay.classList.remove('fa-play-circle');
+        masterPlay.classList.add('fa-pause-circle');
+        gif.style.opacity = 1;
+    }
+});
+
+// Stop button event listener
+stopButton.addEventListener('click', ()=>{
+    audioElement.pause();
+    audioElement.currentTime = 0;
+    gif.style.opacity = 0;
+    masterPlay.classList.remove('fa-pause-circle');
+    masterPlay.classList.add('fa-play-circle');
+    
+    // Update UI elements
+    myProgressBar.value = 0;
+    currentTimeElement.textContent = formatTime(0);
+    
+    // Reset play icons in song list
+    makeAllPlays();
+});
+
 // Listen to Events
-audioElement.addEventListener('timeupdate', ()=>{ 
+audioElement.addEventListener('timeupdate', ()=>{
     // Update Seekbar
-    progress = parseInt((audioElement.currentTime/audioElement.duration)* 100); 
+    progress = parseInt((audioElement.currentTime/audioElement.duration)* 100);
     myProgressBar.value = progress;
     
     // Update time display
@@ -89,7 +119,7 @@ const makeAllPlays = ()=>{
 }
 
 Array.from(document.getElementsByClassName('songItemPlay')).forEach((element)=>{
-    element.addEventListener('click', (e)=>{ 
+    element.addEventListener('click', (e)=>{
         makeAllPlays();
         songIndex = parseInt(e.target.id);
         e.target.classList.remove('fa-play-circle');
